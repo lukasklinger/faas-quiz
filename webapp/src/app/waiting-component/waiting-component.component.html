@@ -1,0 +1,25 @@
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Warten auf Mitspieler...
+      </h1>
+      <h2 class="subtitle">
+        Spiel-ID: {{ _gameState.game.id }}
+      </h2>
+    </div>
+  </div>
+</section>
+
+<section class="content is-medium">
+  <br>
+
+  <div class="container">
+    <div class="has-text-centered">
+      <p *ngFor="let name of names">{{ name.name }}</p>
+    </div>
+
+    <br>
+    <button *ngIf="show" class="button is-info is-fullwidth is-large" (click)="onButtonClick()">Spiel starten</button>
+  </div>
+</section>

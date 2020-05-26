@@ -1,0 +1,36 @@
+<section class="hero is-primary is-bold is-medium">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Willkommen
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <label class="label">Spielername</label>
+    <div class="field">
+      <div class="control is-expanded">
+        <input class="input" type="text" required placeholder="Spielername" #nameInput>
+      </div>
+    </div>
+    
+    <label class="label">Spiel</label>
+    <div class="field">
+      <div class="control">
+        <button class="button is-info is-fullwidth is-large" (click)="startNewGame()">Neues Spiel starten</button>
+      </div>
+    </div>
+
+    <div class="field has-addons">
+      <div class="control is-expanded">
+        <input class="input" type="number" min="0" step="1" placeholder="Spiel-ID" #gameIdInput>
+      </div>
+      <div class="control">
+        <button class="button is-info is-light" (click)="joinExistingGame()">Beitreten</button>
+      </div>
+    </div>
+  </div>
+</section>

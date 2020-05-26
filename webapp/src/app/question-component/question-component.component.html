@@ -1,0 +1,31 @@
+<section [class.has-background-danger]="wrong" [class.has-background-success]="correct" class="section">
+  <div class="container">
+    <div class="columns is-mobile">
+      <div class="column is-full" ng-change>
+        {{ question }}
+      </div>
+    </div>
+    
+    <div class="columns is-mobile">
+      <div class="column is-half">
+        <button [class.is-light]="button1light" class="button is-primary is-fullwidth is-rounded" (click)="clickedButton(0)" ng-change>{{ answer1 }}</button>
+      </div>
+      <div class="column is-half">
+        <button [class.is-light]="button2light" class="button is-primary is-fullwidth is-rounded" (click)="clickedButton(1)" ng-change>{{ answer2 }}</button>
+      </div>
+    </div>
+    
+    <div class="columns is-mobile">
+      <div class="column is-half">
+        <button [class.is-light]="button3light" class="button is-primary is-fullwidth is-rounded" (click)="clickedButton(2)" ng-change>{{ answer3 }}</button>
+      </div>
+      <div class="column is-half">
+        <button [class.is-light]="button4light" class="button is-primary is-fullwidth is-rounded" (click)="clickedButton(3)" ng-change>{{ answer4 }}</button>
+      </div>
+    </div>
+  </div>
+  
+  <br>
+  <br>
+  <progress class="progress is-info" [attr.value]="progressSecs" max="1000"></progress>
+</section>

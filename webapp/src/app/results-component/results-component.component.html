@@ -1,0 +1,23 @@
+<section class="hero is-dark is-bold">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Ergebnis
+      </h1>
+    </div>
+  </div>
+</section>
+
+<section class="content is-medium">
+  <br>
+
+  <div class="container">
+    <ul>
+      <li *ngFor="let player of results">{{ player }}</li>
+    </ul>
+    
+    <br>
+    <br>
+    <button class="button is-fullwidth is-info is-large" (click)="onButtonClick()">Neues Spiel</button>
+  </div>
+</section>

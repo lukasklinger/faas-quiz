@@ -1,0 +1,65 @@
+const Pool = require('pg').Pool
+
+// conntect to database
+const pool = new Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DB,
+  password: process.env.PG_PASS,
+  port: process.env.PG_PORT,
+  ssl:{
+    rejectUnauthorized: false,
+    requestCert: true,
+    agent: false
+  }
+})
+
+const question_table = "public.quiz_questions_de";
+
+exports.handler = async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+
+  if (req.method === 'OPTIONS') {
+    // Send response to OPTIONS requests
+    res.set('Access-Control-Allow-Methods', '*');
+    res.set('Access-Control-Allow-Headers', 'Content-Type');
+    res.set('Access-Control-Max-Age', '3600');
+    res.status(204).send('');
+  } else {
+    let event = req.body;
+    console.log(event);
+
+    let result = new Object();
+    let statementQuestion = "select * from " + question_table + " WHERE id = " + event.id + ";";
+
+    try {
+      result = await queryDatabase(statementQuestion);
+      result = result.rows[0];
+      result.status = 200;
+    } catch (e) {
+      console.log(e);
+      result.status = 500;
+    }
+
+    res.json(result);
+  }
+};
+
+// generic function to query database
+async function queryDatabase(statement) {
+  return new Promise(function(resolve, reject) {
+    pool.query(statement, function(error, result){
+      if (error){
+        reject(error);
+      };
+
+      resolve(result);
+    });
+  });
+}
+
+// generic error handler for database
+pool.on('error', (err, client) => {
+  console.error('Unexpected error on idle client', err);
+  process.exit(-1);
+})
